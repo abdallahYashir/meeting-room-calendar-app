@@ -1,11 +1,12 @@
 <template>
   <v-container>
     <v-subheader :inset="true">Book meeting room</v-subheader>
-    <v-sheet height="500">
+    <v-sheet height="600">
       <v-calendar
+      ref="calendar"
       type="week"
-      now="2019-01-08"
-      value="2019-01-08"
+      color="primary"
+      :value="today"
       :weekdays="weekdays"
       :events="events"
       ></v-calendar>
@@ -14,37 +15,22 @@
 </template>
 
 <script>
+  import { DateTime } from 'luxon'
+
   export default {
     data: () => ({
+      today: DateTime.local().toLocaleString(),
       weekdays: [1, 2, 3, 4, 5],
       events: [
       {
-        name: 'Vacation',
-        start: '2018-12-30',
-        end: '2019-01-02',
-      },
-      {
         name: 'Meeting',
         start: '2019-01-07',
-      },
-      {
-        name: '30th Birthday',
-        start: '2019-01-03',
-      },
-      {
-        name: 'New Year',
-        start: '2019-01-01',
-      },
-      {
-        name: 'Conference',
-        start: '2019-01-21',
-      },
-      {
-        name: 'Hackathon',
-        start: '2019-01-30',
-        end: '2019-02-01',
+        end: '2019-01-07'
       },
       ],
     }),
+    mounted () {
+      this.$refs.calendar.scrollToTime('08:00')
+    },
   };
 </script>
