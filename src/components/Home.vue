@@ -1,6 +1,16 @@
 <template>
   <v-container>
-    <v-subheader :inset="true">Book meeting room</v-subheader>
+    <v-layout>
+      <v-form v-model="current">
+        <v-container>
+          <v-row>
+            <v-col cols="12" md="4">
+              <v-text-field v-model="title" label="Title" solo></v-text-field>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-form>
+    </v-layout>
     <v-sheet height="600">
       <v-calendar
       ref="calendar"
